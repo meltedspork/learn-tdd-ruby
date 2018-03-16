@@ -37,4 +37,16 @@ RSpec.describe Product do
   it 'returns list of product names' do
     expect(Product.product_names).to eq([@p1.name])
   end
+
+  it 'returns the list of sold out products' do
+    # creates products, one with quanity 0 and another with more than 3
+    @p2 = Product.new({ id: 2, name: 'Item2', quantity: 5, price: 15 })
+    @p3 = Product.new({ id: 3, name: 'Item3', quantity: 0, price: 30 })
+
+    expect(Product.product_to_order).to eq([@p3])
+  end
+
+  it 'returns the total inventory value' do
+    expect(Product.total_inventory_value).to eq 150
+  end
 end
