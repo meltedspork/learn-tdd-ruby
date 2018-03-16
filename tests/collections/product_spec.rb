@@ -1,7 +1,8 @@
 require_relative 'product'
 
 RSpec.describe Product do
-  before do
+  # this block runs only once
+  before(:all) do
     @p1 = Product.new({ id: 1, name: 'Item1', quantity: 3, price: 25 })
   end
 
@@ -28,5 +29,8 @@ RSpec.describe Product do
     expect(@p1.quantity).to eq 3
     expect(@p1.price).to eq 25
   end
-  
+
+  it 'returns the list of all products' do
+    expect(Product.all).to eq([@p1])
+  end
 end
