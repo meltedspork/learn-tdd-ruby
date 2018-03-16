@@ -33,4 +33,8 @@ RSpec.describe Product do
   it 'returns the list of all products' do
     expect(Product.all).to eq([@p1])
   end
+
+  it 'returns list of product names' do
+    expect(Product.product_names).to eq([@p1.name])
+  end
 end
