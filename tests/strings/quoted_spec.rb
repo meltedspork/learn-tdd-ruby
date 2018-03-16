@@ -8,14 +8,23 @@ RSpec.describe QuotedString do
   context 'quoted with %q' do
     it 'should not output interpolated text' do
       # %q behaves like single quote
-      sentence =  %q{The sum of 5 + 10 is: #{placeholder}}
+      sentence =  %q{The sum of 5 + 10 is: #{@placeholder}}
       interpolated = "The sum of 5 + 10 is: 15"
 
       text = QuotedString.new sentence
       expect(text.to_s.start_with?('The sum')).to eq(true)
-      expect(text).not_to eq(interpolated)
+      expect(text.to_s).not_to eq(interpolated)
     end
   end
+  context 'quoted with %Q' do
+    it 'should output interpolated text' do
+      # %q behaves like single quote
+      sentence =  %Q{The sum of 5 + 10 is: #{@placeholder}}
+      interpolated = "The sum of 5 + 10 is: 15"
 
-
+      text = QuotedString.new sentence
+      expect(text.to_s.start_with?('The sum')).to eq(true)
+      expect(text.to_s).to eq(interpolated)
+    end
+  end
 end
